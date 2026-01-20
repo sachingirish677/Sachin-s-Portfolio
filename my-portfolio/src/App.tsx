@@ -9,20 +9,24 @@ import Skills from './skills'
 import galaxyVideo from './assets/galaxy.mp4';
 import Projects from './projects'
 import Education from './education'
+import Experience from './experience'
+import Contact from './contact'
 
 function App() {
   const [count, setCount] = useState(0)
 
   return (
     <>
-    <video className="bg-video" autoPlay muted loop>
-  <source src={galaxyVideo} type="video/mp4" />
-</video>
+      <video className="bg-video" autoPlay muted loop>
+        <source src={galaxyVideo} type="video/mp4" />
+      </video>
       <Navbar />
       <About />
       <Skills />
       <Education />
+      <Experience />
       <Projects />
+      <Contact />
     </>
   )
 }

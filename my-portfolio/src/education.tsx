@@ -1,29 +1,26 @@
-    import { ArcherElement } from 'react-archer';
+
+import { useState, useEffect } from 'react';
+import { motion } from 'framer-motion';
+
 
 export default function Education() {
-        
-    const educationData = [
-        {
-          degree: "Bachelor of Computer Science",
-          institution: "ABC University",
-          year: "2019 – 2023",
-        },
-        {
-          degree: "Higher Secondary Education",
-          institution: "XYZ School",
-          year: "2017 – 2019",
-        },
-        {
-          degree: "Secondary School",
-          institution: "Little Flower School",
-          year: "2017",
-        },
-        
-      ];
-    return (
-        <>
-        <h1 className="education">Education</h1>
-        <div className="education-main">
+  const [educationData, setEducationData] = useState<any[]>([]);
+
+  useEffect(() => {
+    fetch('http://localhost:5000/api/education')
+      .then(res => res.json())
+      .then(data => setEducationData(data))
+      .catch(err => console.error('Error fetching education:', err));
+  }, []);
+  return (
+    <motion.div
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
+      viewport={{ once: true, amount: 0.1 }}
+      transition={{ duration: 0.8 }}
+    >
+      <h1 className="education" id="education">Education</h1>
+      <div className="education-main">
         {educationData.map((item, index) => (
           <div className="educationcard" key={index}>
             <h2>{item.degree}</h2>
@@ -32,6 +29,6 @@ export default function Education() {
           </div>
         ))}
       </div>
-        </>
-    );
-    }
+    </motion.div>
+  );
+}
