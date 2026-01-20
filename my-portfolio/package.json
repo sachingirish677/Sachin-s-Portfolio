@@ -5,12 +5,15 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "dev:full": "concurrently \"npm run dev\" \"cd server && npm run dev\"",
+    "dev:admin": "concurrently \"cd portfolio-admin && npm run dev\" \"cd server && npm run dev\"",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview"
   },
   "dependencies": {
     "autoprefixer": "^10.4.21",
+    "axios": "^1.13.2",
     "bootstrap": "^5.3.8",
     "framer-motion": "^12.23.24",
     "hamburger-react": "^2.5.2",
@@ -28,6 +31,7 @@
     "@types/react": "^19.1.16",
     "@types/react-dom": "^19.1.9",
     "@vitejs/plugin-react": "^5.0.4",
+    "concurrently": "^9.1.0",
     "eslint": "^9.36.0",
     "eslint-plugin-react-hooks": "^5.2.0",
     "eslint-plugin-react-refresh": "^0.4.22",
