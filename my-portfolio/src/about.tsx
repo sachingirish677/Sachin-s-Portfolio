@@ -40,7 +40,7 @@ export default function About() {
                         ) : (
                             <p className="description"></p>
                         )}
-                        <a href={resumePdf} download="Sachin_Girish_Resume.pdf" className="resume-button">
+                        <a href={resumePdf} download="Resume.pdf" className="resume-button">
                             Download Resume
                         </a>
                     </div>
