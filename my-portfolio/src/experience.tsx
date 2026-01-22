@@ -50,12 +50,12 @@ export default function Experience() {
         >
             <h1 className="experience-title" id="experience">Experience</h1>
             {displayData.map((exp) => (
-                <div key={exp._id} className="educationcard experience-card">
-                    <div className="exp-header">
-                        <h2 className="exp-company">{exp.company}</h2>
+                <div key={exp._id} className="experience-card">
+                    <div className="exp-duration-wrapper">
                         <span className="exp-duration">{exp.duration}</span>
                     </div>
-                    <h3 className="exp-role">{exp.role}</h3>
+                    <h2 className="exp-role">{exp.role}</h2>
+                    <h3 className="exp-company">{exp.company}</h3>
                     <p className="exp-description">{exp.description}</p>
                 </div>
             ))}

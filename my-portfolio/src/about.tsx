@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { motion } from 'framer-motion';
 
-import resumePdf from './assets/Sachin_Girish_Resume .pdf';
+import resumePdf from './assets/Resume.pdf';
 
 interface AboutData {
     description: string;

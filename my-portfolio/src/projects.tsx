@@ -107,9 +107,6 @@ export default function Projects() {
                     alt={tech.name}
                     className="tech-icon"
                   />
-                  <span className="tech-name">
-                    {tech.name}
-                  </span>
                 </div>
               ))}
             </div>

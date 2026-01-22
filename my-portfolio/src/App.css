@@ -168,54 +168,73 @@ body {
 }
 
 .experience-card {
-  height: auto;
-  min-height: 20rem;
-  padding: 30px;
-  align-items: flex-start;
-  flex-direction: column;
-}
-
-.exp-header {
+  width: 90%;
+  max-width: 1000px;
+  margin: 20px 0;
+  padding: 40px;
+  background: rgba(5, 5, 5, 0.4);
+  border: 1px solid rgba(59, 76, 202, 0.2);
+  border-radius: 24px;
+  backdrop-filter: blur(10px);
+  transition: transform 0.3s ease;
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
   align-items: center;
-  width: 100%;
-  margin-bottom: 20px;
-  flex-wrap: wrap;
-  gap: 15px;
+  text-align: center;
 }
 
-.exp-company {
-  font-size: 28px;
-  font-weight: 700;
-  color: #fff;
-  margin: 0;
+.experience-card:hover {
+  transform: scale(1.01);
+  border-color: rgba(96, 108, 255, 0.4);
+  background: rgba(10, 10, 20, 0.5);
+}
+
+.exp-duration-wrapper {
+  margin-bottom: 20px;
 }
 
 .exp-duration {
-  font-size: 15px;
+  font-size: 14px;
   color: rgba(255, 255, 255, 0.8);
-  background: rgba(27, 52, 171, 0.3);
-  padding: 6px 16px;
-  border-radius: 20px;
-  border: 1px solid rgba(96, 108, 255, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 8px 20px;
+  border-radius: 50px;
+  background: rgba(255, 255, 255, 0.05);
+  white-space: nowrap;
 }
 
 .exp-role {
-  font-size: 22px;
-  color: #a4afff;
-  margin-bottom: 20px;
-  font-weight: 500;
-  width: 100%;
-  text-align: left;
+  font-size: 32px;
+  font-weight: 600;
+  color: #fff;
+  margin: 0 0 10px 0;
+  line-height: 1.2;
+}
+
+.exp-company {
+  font-size: 18px;
+  color: rgba(255, 255, 255, 0.5);
+  font-weight: 400;
+  margin: 0 0 25px 0;
 }
 
 .exp-description {
   font-size: 16px;
   color: rgba(255, 255, 255, 0.9);
-  line-height: 1.7;
-  text-align: left;
-  width: 100%;
+  line-height: 1.6;
+  max-width: 800px;
+  margin: 0;
+}
+
+@media (max-width: 768px) {
+  .experience-card {
+    padding: 30px 20px;
+    width: 95%;
+  }
+
+  .exp-role {
+    font-size: 24px;
+  }
 }
 
 .Project-card {
@@ -250,17 +269,50 @@ body {
 }
 
 .educationcard {
-  margin: 10px;
-  height: 20rem;
+  margin: 20px 0;
+  min-height: 180px;
   display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 40%;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
+  width: 70%;
+  padding: 40px;
   border-radius: 20px;
   background: rgba(59, 76, 202, 0.08);
   border: 1px solid rgba(255, 255, 255, 0.1);
   box-shadow: 0 0 20px rgba(59, 76, 202, 0.1);
   transition: all 0.3s ease-in-out;
+}
+
+.edu-info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+  flex: 1;
+  padding-right: 20px;
+}
+
+.edu-year {
+  font-size: 1.1rem;
+  color: rgba(255, 255, 255, 0.7);
+  white-space: nowrap;
+  background: rgba(27, 52, 171, 0.3);
+  padding: 8px 16px;
+  border-radius: 20px;
+  border: 1px solid rgba(96, 108, 255, 0.3);
+}
+
+.educationcard h2 {
+  font-size: 24px;
+  margin: 0 0 10px 0;
+  color: white;
+}
+
+.educationcard p {
+  font-size: 18px;
+  color: #a4afff;
+  margin: 0;
 }
 
 .educationcard:hover {
@@ -527,8 +579,19 @@ body {
     padding: 30px;
     margin: 15px auto;
     flex-direction: column;
-    text-align: center;
+    align-items: flex-start;
+    text-align: left;
     box-sizing: border-box;
+  }
+
+  .edu-info {
+    width: 100%;
+    margin-bottom: 20px;
+    padding-right: 0;
+  }
+
+  .edu-year {
+    align-self: flex-start;
   }
 
   .educationcard h2 {

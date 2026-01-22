@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useId } from 'react';
 import axios from 'axios';
 import { Upload, X, Image as ImageIcon } from 'lucide-react';
 
@@ -11,6 +11,7 @@ interface ImageUploadProps {
 const ImageUpload: React.FC<ImageUploadProps> = ({ value, onChange, label = 'Image' }) => {
     const [uploading, setUploading] = useState(false);
     const fileInputRef = useRef<HTMLInputElement>(null);
+    const uniqueId = useId();
 
     const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
         const file = e.target.files?.[0];
@@ -78,13 +79,13 @@ const ImageUpload: React.FC<ImageUploadProps> = ({ value, onChange, label = 'Ima
                         onChange={handleFileChange}
                         accept="image/*"
                         className="hidden"
-                        id={`file-upload-${label}`}
+                        id={uniqueId}
                     />
                     <label
-                        htmlFor={`file-upload-${label}`}
+                        htmlFor={uniqueId}
                         className={`inline-flex items-center px-4 py-2 rounded-lg cursor-pointer transition-colors ${uploading
-                                ? 'bg-gray-100 text-gray-400 cursor-not-allowed'
-                                : 'bg-white border border-gray-300 text-gray-700 hover:bg-gray-50'
+                            ? 'bg-gray-100 text-gray-400 cursor-not-allowed'
+                            : 'bg-white border border-gray-300 text-gray-700 hover:bg-gray-50'
                             }`}
                     >
                         <Upload className="w-5 h-5 mr-2" />

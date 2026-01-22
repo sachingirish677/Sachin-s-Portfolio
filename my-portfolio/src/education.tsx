@@ -23,9 +23,13 @@ export default function Education() {
       <div className="education-main">
         {educationData.map((item, index) => (
           <div className="educationcard" key={index}>
-            <h2>{item.degree}</h2>
-            <p>{item.institution}</p>
-            <span>{item.year}</span>
+            <div className="edu-info">
+              <h2>{item.degree}</h2>
+              <p>{item.institution}</p>
+            </div>
+            <div className="edu-year">
+              <span>{item.year}</span>
+            </div>
           </div>
         ))}
       </div>
