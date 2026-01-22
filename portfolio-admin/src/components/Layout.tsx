@@ -1,8 +1,8 @@
-import React from 'react';
+import { type ReactNode } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { LayoutDashboard, FolderGit2, Wrench, GraduationCap, User, Briefcase } from 'lucide-react';
 
-const Layout = ({ children }: { children: React.ReactNode }) => {
+const Layout = ({ children }: { children: ReactNode }) => {
     const location = useLocation();
 
     const navItems = [
