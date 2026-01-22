@@ -1,3 +1,4 @@
+import { API_ENDPOINTS } from '../config/api';
 import React, { useState, useRef, useId } from 'react';
 import axios from 'axios';
 import { Upload, X, Image as ImageIcon } from 'lucide-react';
@@ -22,7 +23,7 @@ const ImageUpload: React.FC<ImageUploadProps> = ({ value, onChange, label = 'Ima
 
         setUploading(true);
         try {
-            const res = await axios.post('http://localhost:5000/api/upload', formData, {
+            const res = await axios.post(API_ENDPOINTS.upload, formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
                 },

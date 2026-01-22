@@ -1,3 +1,4 @@
+import { API_ENDPOINTS } from '../config/api';
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Plus, Pencil, Trash2, Save } from 'lucide-react';
@@ -24,7 +25,7 @@ const EducationManager = () => {
 
     const fetchEducation = async () => {
         try {
-            const res = await axios.get('http://localhost:5000/api/education');
+            const res = await axios.get(API_ENDPOINTS.education);
             setEducationList(res.data);
         } catch (err) {
             console.error('Error fetching education:', err);
@@ -34,7 +35,7 @@ const EducationManager = () => {
     const handleDelete = async (id: string) => {
         if (window.confirm('Are you sure you want to delete this education entry?')) {
             try {
-                await axios.delete(`http://localhost:5000/api/education/${id}`);
+                await axios.delete(`${API_ENDPOINTS.education}/${id}`);
                 fetchEducation();
             } catch (err) {
                 console.error('Error deleting education:', err);
@@ -46,9 +47,9 @@ const EducationManager = () => {
         e.preventDefault();
         try {
             if (currentEducation._id) {
-                await axios.put(`http://localhost:5000/api/education/${currentEducation._id}`, currentEducation);
+                await axios.put(`${API_ENDPOINTS.education}/${currentEducation._id}`, currentEducation);
             } else {
-                await axios.post('http://localhost:5000/api/education', currentEducation);
+                await axios.post(API_ENDPOINTS.education, currentEducation);
             }
             setIsEditing(false);
             setCurrentEducation({ degree: '', institution: '', year: '' });

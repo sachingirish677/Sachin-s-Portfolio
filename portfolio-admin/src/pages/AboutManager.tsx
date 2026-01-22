@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Save } from 'lucide-react';
 import ImageUpload from '../components/ImageUpload';
+import { API_ENDPOINTS } from '../config/api';
 
 interface AboutData {
     description: string;
@@ -22,7 +23,7 @@ const AboutManager = () => {
 
     const fetchAbout = async () => {
         try {
-            const res = await axios.get('http://localhost:5000/api/about');
+            const res = await axios.get(API_ENDPOINTS.about);
             if (res.data && (res.data.description || res.data.imageUrl)) {
                 setAboutData({
                     description: res.data.description || '',
@@ -40,7 +41,7 @@ const AboutManager = () => {
         e.preventDefault();
         setMessage(null);
         try {
-            await axios.put('http://localhost:5000/api/about', aboutData);
+            await axios.put(API_ENDPOINTS.about, aboutData);
             setMessage({ type: 'success', text: 'About section updated successfully!' });
         } catch (err) {
             console.error('Error saving about data:', err);

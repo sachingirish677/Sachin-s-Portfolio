@@ -1,3 +1,4 @@
+import { API_ENDPOINTS } from '../config/api';
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Plus, Pencil, Trash2, Save } from 'lucide-react';
@@ -23,7 +24,7 @@ const SkillManager = () => {
 
     const fetchSkills = async () => {
         try {
-            const res = await axios.get('http://localhost:5000/api/skills');
+            const res = await axios.get(API_ENDPOINTS.skills);
             setSkills(res.data);
         } catch (err) {
             console.error('Error fetching skills:', err);
@@ -33,7 +34,7 @@ const SkillManager = () => {
     const handleDelete = async (id: string) => {
         if (window.confirm('Are you sure you want to delete this skill?')) {
             try {
-                await axios.delete(`http://localhost:5000/api/skills/${id}`);
+                await axios.delete(`${API_ENDPOINTS.skills}/${id}`);
                 fetchSkills();
             } catch (err) {
                 console.error('Error deleting skill:', err);
@@ -45,9 +46,9 @@ const SkillManager = () => {
         e.preventDefault();
         try {
             if (currentSkill._id) {
-                await axios.put(`http://localhost:5000/api/skills/${currentSkill._id}`, currentSkill);
+                await axios.put(`${API_ENDPOINTS.skills}/${currentSkill._id}`, currentSkill);
             } else {
-                await axios.post('http://localhost:5000/api/skills', currentSkill);
+                await axios.post(API_ENDPOINTS.skills, currentSkill);
             }
             setIsEditing(false);
             setCurrentSkill({ name: '', icon: '' });

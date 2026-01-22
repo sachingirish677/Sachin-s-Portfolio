@@ -1,3 +1,4 @@
+import { API_ENDPOINTS } from '../config/api';
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Plus, Pencil, Trash2, X, Save } from 'lucide-react';
@@ -32,7 +33,7 @@ const ProjectManager = () => {
 
     const fetchProjects = async () => {
         try {
-            const res = await axios.get('http://localhost:5000/api/projects');
+            const res = await axios.get(API_ENDPOINTS.projects);
             setProjects(res.data);
         } catch (err) {
             console.error('Error fetching projects:', err);
@@ -42,7 +43,7 @@ const ProjectManager = () => {
     const handleDelete = async (id: string) => {
         if (window.confirm('Are you sure you want to delete this project?')) {
             try {
-                await axios.delete(`http://localhost:5000/api/projects/${id}`);
+                await axios.delete(`${API_ENDPOINTS.projects}/${id}`);
                 fetchProjects();
             } catch (err) {
                 console.error('Error deleting project:', err);
@@ -54,9 +55,9 @@ const ProjectManager = () => {
         e.preventDefault();
         try {
             if (currentProject._id) {
-                await axios.put(`http://localhost:5000/api/projects/${currentProject._id}`, currentProject);
+                await axios.put(`${API_ENDPOINTS.projects}/${currentProject._id}`, currentProject);
             } else {
-                await axios.post('http://localhost:5000/api/projects', currentProject);
+                await axios.post(API_ENDPOINTS.projects, currentProject);
             }
             setIsEditing(false);
             setCurrentProject({ title: '', description: '', link: '', technologies: [] });

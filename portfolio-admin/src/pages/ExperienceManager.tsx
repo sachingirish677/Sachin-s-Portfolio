@@ -1,3 +1,4 @@
+import { API_ENDPOINTS } from '../config/api';
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Briefcase, Calendar, Trash2, Plus, ArrowLeft } from 'lucide-react';
@@ -28,7 +29,7 @@ export default function ExperienceManager() {
 
     const fetchExperiences = async () => {
         try {
-            const res = await axios.get('http://localhost:5000/api/experiences');
+            const res = await axios.get(API_ENDPOINTS.experiences);
             setExperiences(res.data);
         } catch (err) {
             console.error('Error fetching experiences:', err);
@@ -39,14 +40,14 @@ export default function ExperienceManager() {
         e.preventDefault();
         if (isEditing) {
             try {
-                await axios.put(`http://localhost:5000/api/experiences/${isEditing}`, newExperience);
+                await axios.put(`${API_ENDPOINTS.experiences}/${isEditing}`, newExperience);
                 setIsEditing(null);
             } catch (err) {
                 console.error('Error updating experience:', err);
             }
         } else {
             try {
-                await axios.post('http://localhost:5000/api/experiences', newExperience);
+                await axios.post(API_ENDPOINTS.experiences, newExperience);
             } catch (err) {
                 console.error('Error creating experience:', err);
             }
@@ -58,7 +59,7 @@ export default function ExperienceManager() {
     const handleDelete = async (id: string) => {
         if (confirm('Are you sure you want to delete this experience?')) {
             try {
-                await axios.delete(`http://localhost:5000/api/experiences/${id}`);
+                await axios.delete(`${API_ENDPOINTS.experiences}/${id}`);
                 fetchExperiences();
             } catch (err) {
                 console.error('Error deleting experience:', err);
