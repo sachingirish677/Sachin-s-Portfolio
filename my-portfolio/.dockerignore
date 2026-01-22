@@ -1,0 +1,50 @@
+# Node modules
+node_modules
+server/node_modules
+portfolio-admin/node_modules
+
+# Build outputs
+dist
+server/dist
+
+# Git files
+.git
+.gitignore
+
+# Development files
+.env
+.env.local
+.env.development
+
+# IDE files
+.vscode
+.idea
+*.swp
+*.swo
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+logs
+*.log
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Test files
+coverage
+.nyc_output
+
+# Temporary files
+tmp
+temp
+*.tmp
+
+# Vercel
+.vercel
+vercel.json
+
+# Admin panel (if not needed in production)
+portfolio-admin
