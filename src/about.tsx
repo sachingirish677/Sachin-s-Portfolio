@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { motion } from 'framer-motion';
+import { API_ENDPOINTS } from './config/api';
 
 import resumePdf from './assets/Resume.pdf';
 
@@ -14,7 +15,7 @@ export default function About() {
     const defaultPhoto = "https://i.pinimg.com/736x/6e/1f/18/6e1f18cb8ba4d4a0f5481c4aa12ecc42.jpg";
 
     useEffect(() => {
-        axios.get('http://localhost:5000/api/about')
+        axios.get(API_ENDPOINTS.about)
             .then((res: { data: AboutData }) => {
                 if (res.data && (res.data.description || res.data.imageUrl)) {
                     setAboutData(res.data);

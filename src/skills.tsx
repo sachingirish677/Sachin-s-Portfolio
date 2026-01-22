@@ -1,12 +1,13 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
+import { API_ENDPOINTS } from './config/api';
 
 
 export default function Skills() {
   const [skills, setSkills] = useState<any[]>([]);
 
   useEffect(() => {
-    fetch('http://localhost:5000/api/skills')
+    fetch(API_ENDPOINTS.skills)
       .then(res => res.json())
       .then(data => setSkills(data))
       .catch(err => console.error('Error fetching skills:', err));

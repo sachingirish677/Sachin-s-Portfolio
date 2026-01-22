@@ -1,13 +1,14 @@
 
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
+import { API_ENDPOINTS } from './config/api';
 
 
 export default function Education() {
   const [educationData, setEducationData] = useState<any[]>([]);
 
   useEffect(() => {
-    fetch('http://localhost:5000/api/education')
+    fetch(API_ENDPOINTS.education)
       .then(res => res.json())
       .then(data => setEducationData(data))
       .catch(err => console.error('Error fetching education:', err));

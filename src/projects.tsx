@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
+import { API_ENDPOINTS } from './config/api';
 
 import leftArrow from './assets/Left.svg';
 import rightArrow from './assets/Right.svg';
@@ -24,7 +25,7 @@ export default function Projects() {
   const [projects, setProjects] = useState<Project[]>([]);
 
   useEffect(() => {
-    fetch('http://localhost:5000/api/projects')
+    fetch(API_ENDPOINTS.projects)
       .then(res => res.json())
       .then(data => setProjects(data))
       .catch(err => console.error('Error fetching projects:', err));

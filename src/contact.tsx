@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-
+import { API_ENDPOINTS } from './config/api';
 import axios from 'axios';
 
 export default function Contact() {
@@ -13,7 +13,7 @@ export default function Contact() {
         setStatus('sending');
 
         try {
-            await axios.post('http://localhost:5000/api/contact', {
+            await axios.post(API_ENDPOINTS.contact, {
                 email,
                 description
             });

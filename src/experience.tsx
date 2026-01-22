@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-
+import { API_ENDPOINTS } from './config/api';
 import axios from 'axios';
 
 interface ExperienceData {
@@ -15,7 +15,7 @@ export default function Experience() {
     const [experiences, setExperiences] = useState<ExperienceData[]>([]);
 
     useEffect(() => {
-        axios.get('http://localhost:5000/api/experiences')
+        axios.get(API_ENDPOINTS.experiences)
             .then(res => setExperiences(res.data))
             .catch(err => console.error('Error fetching experiences:', err));
     }, []);
