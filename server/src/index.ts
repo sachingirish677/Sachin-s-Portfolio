@@ -5,7 +5,7 @@ import dotenv from 'dotenv';
 import multer from 'multer';
 import path from 'path';
 import fs from 'fs';
-import nodemailer from 'nodemailer';
+import { Resend } from 'resend';
 
 import Project from './models/Project';
 import Skill from './models/Skill';
@@ -14,6 +14,9 @@ import About from './models/About';
 import Experience from './models/Experience';
 
 dotenv.config();
+
+// Initialize Resend
+const resend = new Resend(process.env.RESEND_API_KEY);
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -248,7 +251,7 @@ app.put('/api/about', async (req, res) => {
     }
 });
 
-// Contact Endpoint
+// Contact Endpoint using Resend
 app.post('/api/contact', async (req, res) => {
     const { email, description } = req.body;
 
@@ -256,69 +259,47 @@ app.post('/api/contact', async (req, res) => {
     console.log('From:', email);
     console.log('Description:', description);
 
-    // Check Config
-    console.log('Checking configuration...');
-    if (!process.env.EMAIL_USER) console.error('ERROR: EMAIL_USER is missing in .env');
-    if (!process.env.EMAIL_PASS) console.error('ERROR: EMAIL_PASS is missing in .env');
-
-    if (process.env.EMAIL_USER) {
-        console.log(`Loaded EMAIL_USER: "${process.env.EMAIL_USER.trim()}"`);
-    }
-    if (process.env.EMAIL_PASS) {
-        console.log(`Loaded EMAIL_PASS length: ${process.env.EMAIL_PASS.trim().length}`);
-        const pass = process.env.EMAIL_PASS.trim();
-        console.log(`PASS start: "${pass.substring(0, 2)}...", PASS end: "...${pass.substring(pass.length - 2)}"`);
-    }
-
     if (!email || !description) {
         console.warn('Validation Failed: Email and description are required');
         return res.status(400).json({ message: 'Email and description are required' });
     }
 
+    if (!process.env.RESEND_API_KEY) {
+        console.error('ERROR: RESEND_API_KEY is missing in environment variables');
+        return res.status(500).json({ message: 'Email service not configured' });
+    }
+
     try {
-        console.log('Creating transporter...');
-        const transporter = nodemailer.createTransport({
-            service: 'gmail',
-            auth: {
-                user: process.env.EMAIL_USER?.trim(),
-                pass: process.env.EMAIL_PASS?.trim()
-            }
-        });
+        console.log('Sending email via Resend...');
 
-        // Verify connection configuration
-        await new Promise((resolve, reject) => {
-            // verify connection configuration
-            transporter.verify(function (error, success) {
-                if (error) {
-                    console.error('Transporter Verification Failed:', error);
-                    reject(error);
-                } else {
-                    console.log("Server is ready to take our messages");
-                    resolve(success);
-                }
-            });
-        });
-
-        const mailOptions = {
-            from: email,
+        const { data, error } = await resend.emails.send({
+            from: 'onboarding@resend.dev', // Use this for testing, or your verified domain
             to: 'sachingirish1677@gmail.com',
+            replyTo: email,
             subject: `Portfolio Contact: Message from ${email}`,
-            text: `Sender: ${email}\n\nDescription:\n${description}`
-        };
+            html: `
+                <h2>New Contact Form Submission</h2>
+                <p><strong>From:</strong> ${email}</p>
+                <p><strong>Message:</strong></p>
+                <p>${description.replace(/\n/g, '<br>')}</p>
+            `
+        });
 
-        console.log('Sending email...');
-        const info = await transporter.sendMail(mailOptions);
-        console.log('Email sent successfully:', info.response);
+        if (error) {
+            console.error('Resend API error:', error);
+            return res.status(500).json({
+                message: 'Failed to send email',
+                error: error.message
+            });
+        }
 
+        console.log('Email sent successfully via Resend:', data);
         res.status(200).json({ message: 'Email sent successfully' });
     } catch (error: any) {
         console.error('CRITICAL ERROR sending email:', error);
-
-        // Send more detailed error to client for debugging (remove in production)
         res.status(500).json({
             message: 'Failed to send email',
-            error: error.message,
-            stack: error.stack
+            error: error.message
         });
     }
 });
