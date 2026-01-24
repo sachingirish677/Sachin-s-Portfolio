@@ -6,6 +6,7 @@ import multer from 'multer';
 import path from 'path';
 import fs from 'fs';
 import { Resend } from 'resend';
+import { v2 as cloudinary } from 'cloudinary';
 
 import Project from './models/Project';
 import Skill from './models/Skill';
@@ -18,18 +19,20 @@ dotenv.config();
 // Initialize Resend
 const resend = new Resend(process.env.RESEND_API_KEY);
 
+// Initialize Cloudinary
+cloudinary.config({
+    cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+    api_key: process.env.CLOUDINARY_API_KEY,
+    api_secret: process.env.CLOUDINARY_API_SECRET
+});
+
 const app = express();
 const PORT = process.env.PORT || 5000;
 
 app.use(cors());
 app.use(express.json());
 
-// Serve static files from uploads directory
-const uploadsDir = path.join(__dirname, '../uploads');
-if (!fs.existsSync(uploadsDir)) {
-    fs.mkdirSync(uploadsDir);
-}
-app.use('/uploads', express.static(uploadsDir));
+// No longer need local uploads directory - using Cloudinary
 
 const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost:27017/portfolio';
 
@@ -37,25 +40,41 @@ mongoose.connect(MONGODB_URI)
     .then(() => console.log('Connected to MongoDB'))
     .catch((err) => console.error('MongoDB connection error:', err));
 
-// Multer Configuration
-const storage = multer.diskStorage({
-    destination: (req, file, cb) => {
-        cb(null, uploadsDir);
-    },
-    filename: (req, file, cb) => {
-        cb(null, Date.now() + '-' + file.originalname);
-    }
-});
-
+// Multer Configuration for Cloudinary (memory storage)
+const storage = multer.memoryStorage();
 const upload = multer({ storage });
 
-// Upload Endpoint
-app.post('/api/upload', upload.single('image'), (req, res) => {
+// Upload Endpoint using Cloudinary
+app.post('/api/upload', upload.single('image'), async (req, res) => {
     if (!req.file) {
         return res.status(400).json({ message: 'No file uploaded' });
     }
-    const imageUrl = `${req.protocol}://${req.get('host')}/uploads/${req.file.filename}`;
-    res.json({ imageUrl });
+
+    try {
+        // Upload to Cloudinary using stream
+        const uploadStream = cloudinary.uploader.upload_stream(
+            {
+                folder: 'portfolio', // Organize images in a folder
+                resource_type: 'auto' // Auto-detect file type
+            },
+            (error, result) => {
+                if (error) {
+                    console.error('Cloudinary upload error:', error);
+                    return res.status(500).json({ message: 'Failed to upload image', error: error.message });
+                }
+
+                // Return the secure URL from Cloudinary
+                res.json({ imageUrl: result!.secure_url });
+            }
+        );
+
+        // Pipe the file buffer to Cloudinary
+        const bufferStream = require('stream').Readable.from(req.file.buffer);
+        bufferStream.pipe(uploadStream);
+    } catch (error: any) {
+        console.error('Upload error:', error);
+        res.status(500).json({ message: 'Failed to upload image', error: error.message });
+    }
 });
 
 // Projects CRUD
