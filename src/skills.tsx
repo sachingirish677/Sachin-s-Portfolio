@@ -1,10 +1,10 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { API_ENDPOINTS } from './config/api';
-
+import defaultSkills from './data/skills.json';
 
 export default function Skills() {
-  const [skills, setSkills] = useState<any[]>([]);
+  const [skills, setSkills] = useState<any[]>(defaultSkills);
 
   useEffect(() => {
     fetch(API_ENDPOINTS.skills)

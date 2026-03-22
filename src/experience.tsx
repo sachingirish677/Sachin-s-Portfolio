@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { API_ENDPOINTS } from './config/api';
 import axios from 'axios';
+import defaultExperiences from './data/experiences.json';
 
 interface ExperienceData {
     _id: string;
@@ -12,7 +13,7 @@ interface ExperienceData {
 }
 
 export default function Experience() {
-    const [experiences, setExperiences] = useState<ExperienceData[]>([]);
+    const [experiences, setExperiences] = useState<ExperienceData[]>(defaultExperiences as ExperienceData[]);
 
     useEffect(() => {
         axios.get(API_ENDPOINTS.experiences)

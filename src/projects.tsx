@@ -4,6 +4,7 @@ import { API_ENDPOINTS } from './config/api';
 
 import leftArrow from './assets/Left.svg';
 import rightArrow from './assets/Right.svg';
+import defaultProjects from './data/projects.json';
 
 interface Technology {
   name: string;
@@ -22,7 +23,7 @@ export default function Projects() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
 
-  const [projects, setProjects] = useState<Project[]>([]);
+  const [projects, setProjects] = useState<Project[]>(defaultProjects as Project[]);
 
   useEffect(() => {
     fetch(API_ENDPOINTS.projects)

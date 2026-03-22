@@ -2,10 +2,10 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { API_ENDPOINTS } from './config/api';
-
+import defaultEducation from './data/education.json';
 
 export default function Education() {
-  const [educationData, setEducationData] = useState<any[]>([]);
+  const [educationData, setEducationData] = useState<any[]>(defaultEducation);
 
   useEffect(() => {
     fetch(API_ENDPOINTS.education)

@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import { API_ENDPOINTS } from './config/api';
 
 import resumePdf from './assets/Resume.pdf';
+import defaultAbout from './data/about.json';
 
 interface AboutData {
     description: string;
@@ -11,7 +12,7 @@ interface AboutData {
 }
 
 export default function About() {
-    const [aboutData, setAboutData] = useState<AboutData | null>(null);
+    const [aboutData, setAboutData] = useState<AboutData | null>(defaultAbout as AboutData | null);
     const defaultPhoto = "https://i.pinimg.com/736x/6e/1f/18/6e1f18cb8ba4d4a0f5481c4aa12ecc42.jpg";
 
     useEffect(() => {

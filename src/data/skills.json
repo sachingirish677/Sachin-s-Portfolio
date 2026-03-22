@@ -1,0 +1,56 @@
+[
+  {
+    "_id": "6973cea0f5c94582d60ead3a",
+    "name": "React",
+    "icon": "https://res.cloudinary.com/dhsl31ykz/image/upload/v1769258145/portfolio/dh1yrryhuyeujynpvmhr.png",
+    "__v": 0
+  },
+  {
+    "_id": "6973cecff5c94582d60ead3f",
+    "name": "Typescript",
+    "icon": "https://res.cloudinary.com/dhsl31ykz/image/upload/v1769258157/portfolio/g3xe8sflclrbuphhpxd1.webp",
+    "__v": 0
+  },
+  {
+    "_id": "6973cee1f5c94582d60ead42",
+    "name": "MongoDb",
+    "icon": "https://res.cloudinary.com/dhsl31ykz/image/upload/v1769258170/portfolio/khyymihosenwymtqyhrq.png",
+    "__v": 0
+  },
+  {
+    "_id": "6973cf2df5c94582d60ead45",
+    "name": "MySql",
+    "icon": "https://res.cloudinary.com/dhsl31ykz/image/upload/v1769258185/portfolio/bom5z7v3yxjsvpy8ihpg.webp",
+    "__v": 0
+  },
+  {
+    "_id": "6973cf3ff5c94582d60ead48",
+    "name": "Html",
+    "icon": "https://res.cloudinary.com/dhsl31ykz/image/upload/v1769258198/portfolio/n6d8clur1vawdkdqke1z.png",
+    "__v": 0
+  },
+  {
+    "_id": "6973cf4df5c94582d60ead4b",
+    "name": "CSS",
+    "icon": "https://res.cloudinary.com/dhsl31ykz/image/upload/v1769258231/portfolio/xrblnbdcabv4kgpyjupx.png",
+    "__v": 0
+  },
+  {
+    "_id": "6973cf61f5c94582d60ead4e",
+    "name": "Dart",
+    "icon": "https://res.cloudinary.com/dhsl31ykz/image/upload/v1769258242/portfolio/lpyj4i7ntukynxbwg33v.png",
+    "__v": 0
+  },
+  {
+    "_id": "6973cf82f5c94582d60ead51",
+    "name": "Python",
+    "icon": "https://res.cloudinary.com/dhsl31ykz/image/upload/v1769258255/portfolio/hfebktdmlodwu1bpmlgj.png",
+    "__v": 0
+  },
+  {
+    "_id": "6973d04ff5c94582d60ead59",
+    "name": "Liquid",
+    "icon": "https://res.cloudinary.com/dhsl31ykz/image/upload/v1769258263/portfolio/fsatzmt7cuu6mverhmpu.png",
+    "__v": 0
+  }
+]

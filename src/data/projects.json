@@ -1,0 +1,74 @@
+[
+  {
+    "_id": "6973d4d1f5c94582d60ead9f",
+    "title": "Joola.in",
+    "description": "JOOLA India (joola.in) is the official e-commerce platform for JOOLA in India, built to deliver a seamless shopping experience for premium pickleball and table tennis equipment. I was part of the core team that developed the website from scratch, contributing to the end-to-end build of a scalable, performance-driven, and brand-aligned platform.",
+    "link": "https://joola.in/",
+    "technologies": [
+      {
+        "name": "Shopify",
+        "icon": "https://res.cloudinary.com/dhsl31ykz/image/upload/v1769257963/portfolio/b9b7pashpj7dt34jrcst.png",
+        "_id": "6973d4d1f5c94582d60eada0"
+      },
+      {
+        "name": "JS",
+        "icon": "https://res.cloudinary.com/dhsl31ykz/image/upload/v1769257973/portfolio/klq8wqga2vtuohxghjsx.png",
+        "_id": "6973d4d1f5c94582d60eada1"
+      },
+      {
+        "name": "css",
+        "icon": "https://res.cloudinary.com/dhsl31ykz/image/upload/v1769257980/portfolio/bctbo8zuyk1avn2g1g9i.png",
+        "_id": "6973d4e2f5c94582d60eada8"
+      }
+    ],
+    "__v": 0
+  },
+  {
+    "_id": "6973df8e80fe90e4f6e3962f",
+    "title": "Discount Guard",
+    "description": "Discount Guard is a custom Shopify app developed for JOOLA, designed to maintain promotion integrity by automatically removing free products from the cart when additional discounts are applied. It prevents unintended discount stacking, protects margins, and ensures a seamless checkout experience for customers.",
+    "link": "https://joola.com/",
+    "technologies": [
+      {
+        "name": "React",
+        "icon": "https://res.cloudinary.com/dhsl31ykz/image/upload/v1769258007/portfolio/tcphzxac9yrykpjqx6eo.png",
+        "_id": "6973df8e80fe90e4f6e39630"
+      },
+      {
+        "name": "Typescript",
+        "icon": "https://res.cloudinary.com/dhsl31ykz/image/upload/v1769258013/portfolio/pikvkqd1vwpw4uoexudq.webp",
+        "_id": "6973df8e80fe90e4f6e39631"
+      },
+      {
+        "name": "remix",
+        "icon": "https://res.cloudinary.com/dhsl31ykz/image/upload/v1769258050/portfolio/jq16wvapmglsjbekuz4o.png",
+        "_id": "6973df8e80fe90e4f6e39632"
+      }
+    ],
+    "__v": 0
+  },
+  {
+    "_id": "6973dfea80fe90e4f6e3963b",
+    "title": "RPO",
+    "description": "RacketPro (RPO) is a global platform focused on education, certification, and professional development for racket sports coaches. The website offers structured learning programs, coaching pathways, and resources designed to elevate coaching standards and support the growth of the global racket sports community",
+    "link": "https://racketpro.org/",
+    "technologies": [
+      {
+        "name": "Flutter",
+        "icon": "https://res.cloudinary.com/dhsl31ykz/image/upload/v1769258086/portfolio/fpxl6xnfeoepxhoa3saa.png",
+        "_id": "6973dfea80fe90e4f6e3963c"
+      },
+      {
+        "name": "Nodejs",
+        "icon": "https://res.cloudinary.com/dhsl31ykz/image/upload/v1769258107/portfolio/cdcghearov2nvz2vaafs.webp",
+        "_id": "6973e04b80fe90e4f6e39653"
+      },
+      {
+        "name": "My Sql",
+        "icon": "https://res.cloudinary.com/dhsl31ykz/image/upload/v1769258125/portfolio/x8daljmgwcfbatbilu9m.webp",
+        "_id": "6974bc90af62225dc76a4d88"
+      }
+    ],
+    "__v": 0
+  }
+]
